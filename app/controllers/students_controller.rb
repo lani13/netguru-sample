@@ -1,40 +1,25 @@
 class StudentsController < ApplicationController
+  expose(:students) { Student.all }
   expose(:student, attributes: :student_params)
   expose(:student_subject_items) { student.subject_items }
 
-  def index
-    @students = Student.all 
-  end
-  
-  def new
-    @student = Student.new
-  end
-
   def create
     params.permit!
-    @student = Student.new(params[:student])
+    student = Student.new(params[:student])
 
-    if @student.save
-      redirect_to student_path(@student), notice: I18n.t('shared.created', resource: 'Student')
+    if student.save
+      redirect_to student_path(student), notice: I18n.t('shared.created', resource: 'Student')
     else
       render :new
     end
   end
-  
-  def show
-    @student = Student.find(params[:id])
-  end
-
-  def edit
-    @student = Student.find(params[:id])
-  end
 
   def update
     params.permit!
-    @student = Student.find(params[:id])
+    student = Student.find(params[:id])
 
-    if @student.update(params[:student])
-      redirect_to student_path(@student), notice: I18n.t('shared.updated', resource: 'Student')
+    if student.update(params[:student])
+      redirect_to student_path(student), notice: I18n.t('shared.updated', resource: 'Student')
     else
       render :edit
     end

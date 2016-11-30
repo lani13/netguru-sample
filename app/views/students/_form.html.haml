@@ -1,4 +1,4 @@
-= simple_form_for @student do |f|
+= simple_form_for student do |f|
   = f.input :first_name
   = f.input :last_name
   = f.association :subject_items, label_method: :title, value_method: :id, label: 'Subject Items', as: :check_boxes
