@@ -1,6 +1,11 @@
 puts "Seeds: start"
 TEACHER_TITLES = %w(Dr. Prof. TA)
-User.create!(email: 'admin@admin.com', password: 'adminadmin')
+user = User.new
+user.email = 'admin@admin.com' 
+user.password = 'adminadmin'
+user.password_confirmation = 'adminadmin'
+user.save!
+
 
 30.times do
   Teacher.create!(
