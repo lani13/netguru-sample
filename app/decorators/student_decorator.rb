@@ -4,5 +4,13 @@ class StudentDecorator < BaseDecorator
   end
 
   def avg_notes(subject_item)
+    notes = subject_item.subject_item_notes
+    
+    if notes.empty?
+      '0.00'
+    else
+      average = notes.inject(0.0) { |sum,n| sum + n.value} / notes.size
+      sprintf('%.2f', average)
+    end
   end
 end
