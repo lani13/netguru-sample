@@ -11,11 +11,18 @@ class StudentsController < ApplicationController
   end
 
   def create
+    params.permit!
+    @student = Student.new(params[:student])
+
     if @student.save
       redirect_to student_path(@student), notice: I18n.t('shared.created', resource: 'Student')
     else
       render :new
     end
+  end
+  
+  def show
+    @student = Student.find(params[:id])
   end
 
   def update
