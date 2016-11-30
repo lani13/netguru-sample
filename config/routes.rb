@@ -15,7 +15,5 @@ Rails.application.routes.draw do
   resources :subject_items
   resources :subject_item_notes
   
-  resources :reports do
-    resources :subjects
-  end
+  get 'reports/subjects', to: 'reports#subjects', as: :report_subjects
 end
