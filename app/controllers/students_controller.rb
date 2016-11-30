@@ -5,10 +5,14 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all 
   end
+  
+  def new
+    @student = Student.new
+  end
 
   def create
-    if student.save
-      redirect_to student_path(student), notice: I18n.t('shared.created', resource: 'Student')
+    if @student.save
+      redirect_to student_path(@student), notice: I18n.t('shared.created', resource: 'Student')
     else
       render :new
     end
