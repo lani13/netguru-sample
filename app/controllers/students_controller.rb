@@ -25,9 +25,16 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def edit
+    @student = Student.find(params[:id])
+  end
+
   def update
-    if student.save
-      redirect_to student_path(student), notice: I18n.t('shared.updated', resource: 'Student')
+    params.permit!
+    @student = Student.find(params[:id])
+
+    if @student.update(params[:student])
+      redirect_to student_path(@student), notice: I18n.t('shared.updated', resource: 'Student')
     else
       render :edit
     end
