@@ -1,7 +1,8 @@
 rvm:
   - 2.2.3
 before_script:
-  - psql -c 'create user workshops;' -U postgres
+  - psql -c 'create user workshops with createuser;' -U postgres  
+  - psql -c 'alter user workshops createdb;' -U postgres
   - psql -c 'create database workshops_test;' -U postgres
   - psql -c 'alter database workshops_test owner to workshops;' -U postgres
   - psql -c 'grant all on database workshops_test to workshops;' -U postgres
