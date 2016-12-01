@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :subject_item_notes
   
   get 'reports/subjects', to: 'reports#subjects', as: :report_subjects
+  get 'about', to: 'pages#about', as: :pages_about
 end
